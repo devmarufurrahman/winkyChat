@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "414529456589",
+    "project_id": "winky-chat",
+    "storage_bucket": "winky-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414529456589:android:9613d98ca69d60767d9c84",
+        "android_client_info": {
+          "package_name": "com.example.mrnchatbd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5HCQX3cpxbor6GK-kJrnAo2uxbDPvA1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
