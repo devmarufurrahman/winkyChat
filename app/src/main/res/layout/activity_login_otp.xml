@@ -139,7 +139,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Resend OTP in 30 sec"
+        android:text="Resend OTP in 60 sec"
         android:gravity="center"
         android:layout_weight="10"
         android:id="@+id/resendOtp"

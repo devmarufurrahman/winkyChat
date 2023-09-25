@@ -31,6 +31,8 @@ public class LoginWithPhone extends AppCompatActivity {
         sendOtpBtn = findViewById(R.id.sendOtpBtn);
         progressBar = findViewById(R.id.progressPhone);
 
+        progressBar.setVisibility(View.GONE);
+
 
         countryCodePicker.registerCarrierNumberEditText(mobileInput);
         sendOtpBtn.setOnClickListener(new View.OnClickListener() {
