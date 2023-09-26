@@ -154,6 +154,7 @@ public class LoginOtp extends AppCompatActivity {
                 setInProgress(false);
                 if (task.isSuccessful()){
                     Intent intent = new Intent(LoginOtp.this, UserName.class);
+                    intent.putExtra("phone",phoneNumber);
                     startActivity(intent);
 
                 } else {
