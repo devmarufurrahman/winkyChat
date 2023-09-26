@@ -55,10 +55,8 @@ public class UserName extends AppCompatActivity {
         setInProgress(true);
         if (userModel != null){
             userModel.setUserName(username);
-            Toast.makeText(this, "local user", Toast.LENGTH_SHORT).show();
         } else {
             userModel = new UserModel(phoneNumber,username, Timestamp.now());
-            Toast.makeText(this, "new user model", Toast.LENGTH_SHORT).show();
         }
         FirebaseUtils.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

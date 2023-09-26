@@ -8,6 +8,9 @@ public class UserModel {
     private com.google.firebase.Timestamp timestampCreate;
 
 
+    public UserModel(){
+
+    }
 
     public UserModel(String phoneNumber, String userName, com.google.firebase.Timestamp timestampCreate) {
         this.phoneNumber = phoneNumber;

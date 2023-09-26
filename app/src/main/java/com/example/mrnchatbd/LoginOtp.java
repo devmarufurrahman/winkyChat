@@ -130,7 +130,7 @@ public class LoginOtp extends AppCompatActivity {
                     });
                 }
             }
-        },0,1000);
+        },7000,1000);
     }
 
     void setInProgress(boolean inProgress){
