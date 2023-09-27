@@ -11,13 +11,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.mrnchatbd.utils.FirebaseUtils;
+import com.example.mrnchatbd.utils.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.sql.Time;
-import java.time.Instant;
 
 public class UserName extends AppCompatActivity {
 
@@ -56,7 +55,7 @@ public class UserName extends AppCompatActivity {
         if (userModel != null){
             userModel.setUserName(username);
         } else {
-            userModel = new UserModel(phoneNumber,username, Timestamp.now(),FirebaseUtils.currentUserId());
+            userModel = new UserModel(phoneNumber,username, Timestamp.now(), FirebaseUtils.currentUserId());
         }
         FirebaseUtils.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

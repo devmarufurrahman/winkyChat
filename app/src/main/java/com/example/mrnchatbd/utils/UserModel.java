@@ -1,4 +1,4 @@
-package com.example.mrnchatbd;
+package com.example.mrnchatbd.utils;
 
 import java.sql.Timestamp;
 

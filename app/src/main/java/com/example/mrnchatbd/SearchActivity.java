@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.mrnchatbd.adapter.SearchRecyclerAdapter;
+import com.example.mrnchatbd.utils.FirebaseUtils;
+import com.example.mrnchatbd.utils.UserModel;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.Query;
 

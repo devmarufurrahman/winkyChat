@@ -1,4 +1,4 @@
-package com.example.mrnchatbd;
+package com.example.mrnchatbd.utils;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;

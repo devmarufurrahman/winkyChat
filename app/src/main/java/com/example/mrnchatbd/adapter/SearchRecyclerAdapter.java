@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mrnchatbd.FirebaseUtils;
+import com.example.mrnchatbd.utils.FirebaseUtils;
 import com.example.mrnchatbd.R;
-import com.example.mrnchatbd.UserModel;
+import com.example.mrnchatbd.utils.UserModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
