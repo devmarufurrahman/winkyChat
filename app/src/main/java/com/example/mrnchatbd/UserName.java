@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mrnchatbd.utils.FirebaseUtils;
-import com.example.mrnchatbd.utils.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -24,7 +23,7 @@ public class UserName extends AppCompatActivity {
     Button letMeIn;
     ProgressBar progressBar;
     String phoneNumber;
-    UserModel userModel;
+    SearchActivity.UserModel userModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,7 @@ public class UserName extends AppCompatActivity {
         if (userModel != null){
             userModel.setUserName(username);
         } else {
-            userModel = new UserModel(phoneNumber,username, Timestamp.now(), FirebaseUtils.currentUserId());
+            userModel = new SearchActivity.UserModel(phoneNumber,username, Timestamp.now(), FirebaseUtils.currentUserId());
         }
         FirebaseUtils.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -79,7 +78,7 @@ public class UserName extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 setInProgress(false);
                 if (task.isSuccessful()){
-                    userModel = task.getResult().toObject(UserModel.class);
+                    userModel = task.getResult().toObject(SearchActivity.UserModel.class);
                    if (userModel != null){
                        userNameInput.setText(userModel.getUserName());
                    }

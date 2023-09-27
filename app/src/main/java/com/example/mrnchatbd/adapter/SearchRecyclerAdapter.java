@@ -1,6 +1,7 @@
 package com.example.mrnchatbd.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +11,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mrnchatbd.ChatActivity;
+import com.example.mrnchatbd.SearchActivity;
+import com.example.mrnchatbd.utils.AndroidUtils;
 import com.example.mrnchatbd.utils.FirebaseUtils;
 import com.example.mrnchatbd.R;
-import com.example.mrnchatbd.utils.UserModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class SearchRecyclerAdapter extends FirestoreRecyclerAdapter<UserModel, SearchRecyclerAdapter.UserModelViewHolder> {
+public class SearchRecyclerAdapter extends FirestoreRecyclerAdapter<SearchActivity.UserModel, SearchRecyclerAdapter.UserModelViewHolder> {
 
     Context context;
-    public SearchRecyclerAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options,Context context) {
+    public SearchRecyclerAdapter(@NonNull FirestoreRecyclerOptions<SearchActivity.UserModel> options, Context context) {
         super(options);
         this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
+    protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull SearchActivity.UserModel model) {
         holder.userNameText.setText(model.getUserName());
         holder.userNamePhone.setText(model.getPhoneNumber());
         if (model.getUserId().equals(FirebaseUtils.currentUserId())){
@@ -36,7 +39,10 @@ public class SearchRecyclerAdapter extends FirestoreRecyclerAdapter<UserModel, S
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, ChatActivity.class);
+                AndroidUtils.passUserModelIntent(intent,model);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
