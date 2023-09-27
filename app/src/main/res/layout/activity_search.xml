@@ -43,39 +43,46 @@
         android:layout_below="@+id/searchToolbar"
         android:id="@+id/searchUserLayout"
         >
+
         <EditText
+            android:id="@+id/searchUserInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@+id/searchUserBtn"
             android:background="@drawable/edit_text_round"
-            android:layout_margin="10dp"
-            android:padding="10dp"
             android:elevation="5dp"
             android:hint="username"
-            android:layout_toLeftOf="@+id/searchUserBtn"
-            android:id="@+id/searchUserInput"
-            />
+            android:padding="10dp" />
 
         <ImageButton
+            android:id="@+id/searchUserBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/search_icon"
             android:layout_alignParentEnd="true"
-            android:id="@+id/searchUserBtn"
             android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_margin="10dp"
             android:padding="4dp"
-            app:tint="@color/my_secondary"
-            />
+            android:src="@drawable/search_icon"
+            app:tint="@color/my_secondary" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchUserRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchUserLayout"
-        android:padding="7dp"
-        android:layout_margin="10dp"
-        android:id="@+id/searchUserRecycler"
-        />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="7dp" />
 
 </RelativeLayout>

@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="my_primary">#009688</color>
     <color name="my_secondary">#EB0134</color>
-    <color name="offWhite">#FDFDFD</color>
+    <color name="offWhite">#FAFAFA</color>
     <color name="lightGray">#C3C3C3</color>
 
 </resources>
