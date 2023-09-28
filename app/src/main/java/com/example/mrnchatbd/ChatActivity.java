@@ -60,7 +60,24 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        // send btn activity
+        sendSmsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = chatInput.getText().toString().trim();
+                if (message.isEmpty())
+                    return;
+                sendMessageToUser(message);
+            }
+        });
+
+
+        // chat room create
         getOrCreateChatroomModel();
+    }
+
+    private void sendMessageToUser(String message) {
+
     }
 
     private void getOrCreateChatroomModel() {
