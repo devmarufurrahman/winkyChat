@@ -13,55 +13,53 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mrnchatbd.ChatActivity;
 import com.example.mrnchatbd.SearchActivity;
+import com.example.mrnchatbd.model.ChatroomModel;
 import com.example.mrnchatbd.utils.AndroidUtils;
 import com.example.mrnchatbd.utils.FirebaseUtils;
 import com.example.mrnchatbd.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 
-public class RecentChatAdapter extends FirestoreRecyclerAdapter<SearchActivity.UserModel, RecentChatAdapter.UserModelViewHolder> {
+public class RecentChatAdapter extends FirestoreRecyclerAdapter<ChatroomModel, RecentChatAdapter.ChatroomModelViewHolder> {
 
     Context context;
-    public RecentChatAdapter(@NonNull FirestoreRecyclerOptions<SearchActivity.UserModel> options, Context context) {
+    public RecentChatAdapter(@NonNull FirestoreRecyclerOptions<ChatroomModel> options, Context context) {
         super(options);
         this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull SearchActivity.UserModel model) {
-        holder.userNameText.setText(model.getUserName());
-        holder.userNamePhone.setText(model.getPhoneNumber());
-        if (model.getUserId().equals(FirebaseUtils.currentUserId())){
-            holder.userNameText.setText(model.getUserName()+ "  (Me)");
-        }
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ChatActivity.class);
-                AndroidUtils.passUserModelIntent(intent,model);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
+    protected void onBindViewHolder(@NonNull ChatroomModelViewHolder holder, int position, @NonNull ChatroomModel model) {
+        FirebaseUtils.getOtherUserFromChatroom(model.getUserIds())
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        SearchActivity.UserModel otherUserModel  = task.getResult().toObject(SearchActivity.UserModel.class);
+                        assert otherUserModel != null;
+                        holder.userNameText.setText(otherUserModel.getUserName());
+                        holder.lastMessageText.setText(model.getLastMessage());
+                        holder.lastMessageTime.setText(model.getLastMessageTimeStamp().toString());
+                    }
+                });
     }
 
     @NonNull
     @Override
-    public UserModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.search_users_recycler,parent,false);
-        return new UserModelViewHolder(view);
+    public ChatroomModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.recent_chat_layout_recycler,parent,false);
+        return new ChatroomModelViewHolder(view);
     }
 
-    class UserModelViewHolder extends RecyclerView.ViewHolder{
-        TextView userNameText, userNamePhone;
+    class ChatroomModelViewHolder extends RecyclerView.ViewHolder{
+        TextView userNameText, lastMessageText, lastMessageTime;
         ImageView userProfileImg;
-        public UserModelViewHolder(@NonNull View itemView) {
+        public ChatroomModelViewHolder(@NonNull View itemView) {
             super(itemView);
             userNameText = itemView.findViewById(R.id.userName);
-            userNamePhone = itemView.findViewById(R.id.userPhone);
-            userProfileImg = itemView.findViewById(R.id.profile_pic_img_view);
+            lastMessageText = itemView.findViewById(R.id.lastMessageText);
+            lastMessageTime = itemView.findViewById(R.id.lastMessageTime);
         }
     }
 }
